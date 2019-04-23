@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.zx.weather.R;
 
+import java.util.List;
+
 /**
  * 项目名称：Weather
  * 类描述：这里是天气适配器
@@ -19,10 +21,10 @@ import com.zx.weather.R;
  * 修改备注：
  */
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.MyViewHolder> {
-    private String[] datas;
+    private List<String> datas;
     private Context context;
 
-    public WeatherAdapter(Context context, String[] citys){
+    public WeatherAdapter(Context context,List<String> citys){
         datas = citys;
         this.context = context;
     }
@@ -48,7 +50,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        holder.tv.setText(datas[position]);
+        holder.tv.setText(datas.get(position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +62,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.MyViewHo
 
     @Override
     public int getItemCount() {
-        return datas.length;
+        return datas.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

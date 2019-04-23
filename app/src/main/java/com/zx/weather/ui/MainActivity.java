@@ -19,6 +19,9 @@ import com.zx.weather.mvp.view.IMainView;
 import com.zx.weather.ui.adapder.WeatherAdapter;
 import com.zx.weather.util.common.Commons;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
      */
     private ArrayMap<String, String> cityIdMap = new ArrayMap<>();
 
-    private String[] citys = {getString(R.string.new_york),getString(R.string.chicago),getString(R.string.miami),getString(R.string.san_francisco)};
+    private List<String> citys = new ArrayList<>();
 
     private int type = 0;
 
@@ -69,6 +72,12 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         cityIdMap.put(getString(R.string.miami),getString(R.string.miami_id));
         cityIdMap.put(getString(R.string.san_francisco),getString(R.string.san_francisco_id));
 
+        citys.add(getString(R.string.new_york));
+        citys.add(getString(R.string.chicago));
+        citys.add(getString(R.string.miami));
+        citys.add(getString(R.string.san_francisco));
+
+
     }
 
     /**
@@ -76,7 +85,8 @@ public class MainActivity extends AppCompatActivity implements IMainView {
      * @param type
      */
     private void queryWeather(int type) {
-        mainPresenterImpl.getRecentWeather(disposables,cityIdMap.get(citys[type]));
+        this.type = type;
+        mainPresenterImpl.getRecentWeather(disposables,cityIdMap.get(citys.get(type)));
     }
 
     /**
@@ -101,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,MapActivity.class);
-                intent.putExtra(Commons.CITY_KEY, citys[type]);
+                intent.putExtra(Commons.CITY_KEY, citys.get(type));
                 startActivity(intent);
             }
         });
