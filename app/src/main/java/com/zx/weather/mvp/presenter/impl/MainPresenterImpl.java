@@ -44,14 +44,19 @@ public class MainPresenterImpl implements IMainPresenter, OnWeatherListener {
     @Override
     public void onWeathersResult(Weather1 weathers, String msg) {
         // 处理天气数据后 调用V层接口将数据给到V层
-
+        Weather1.DataBean dataBean = weathers.getData().get(0);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(weathers.getCity()).append("\n")
-                .append(weathers.getData().get(0).getWea())
-                .append(weathers.getData().get(0).getTem2())
+                .append(dataBean.getWea()).append("\t")
+                .append(dataBean.getTem2())
                 .append("--")
-                .append(weathers.getData().get(0).getTem1())
-                .append("°C");
+                .append(dataBean.getTem1())
+                .append("°C").append("\t");
+
+        for(String win :dataBean.getWin()){
+            stringBuilder.append(win);
+        }
+        stringBuilder.append(dataBean.getWin_speed());
 
         iMainView.setWeathers(stringBuilder.toString());
     }

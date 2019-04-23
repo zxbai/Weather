@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Weather</string>
+    <string name="new_york">纽约</string>
+    <string name="chicago">芝加哥</string>
+    <string name="miami">迈阿密</string>
+    <string name="san_francisco">旧金山</string>
+
+    <string name="new_york_id">401110101</string>
+    <string name="chicago_id">401070101</string>
+    <string name="miami_id">401020101</string>
+    <string name="san_francisco_id">401640100</string>
+    <string name="city_map">查看城市地图</string>
 </resources>
