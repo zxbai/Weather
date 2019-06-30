@@ -25,6 +25,7 @@ public class MapActivity extends AppCompatActivity {
         //初始化地图控制器对象
         if (aMap == null) {
             aMap = mMapView.getMap();
+            //测试分支
         }
     }
     @Override
